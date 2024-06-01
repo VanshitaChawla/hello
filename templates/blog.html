@@ -1,0 +1,126 @@
+{% extends 'base1.html' %}
+
+{% load static %}
+{% block body %}
+    <section id="header">
+        <a href="#"><img src="/img/logo.png" class="logo" alt=""></a> 
+    <div>
+        <ul id ="navbar">
+            <li><a  href="/ecom">Home</a></li>
+                <li><a  href="/shop">Shop</a></li>
+                    <li><a class="active" href="/blog">Blog</a></li>
+                        <li><a href="/about">About</a></li>
+                            <li><a href="/contact">Contact-Us</a></li>
+                                <li id="lg-bag"><a href="/cart"><img src="{% static 'img/shopping-cart.png' %}"</a></li>
+                                <a href="#" id="close"><i class="far fa-times">*</i></a>
+
+                            </ul>
+    </div>
+    <div id="mobile">
+         <a href="/cart"><img src="img/shopping-cart.png"></a>
+         <i id="bar" class="fas fa-outdent"></i>
+       
+    </div>
+    </section>
+
+
+
+
+    <section id="page-header" class="blog-header">
+        
+        <h2>#readmore</h2>
+        
+        <p>read all case studies about our products!</p>
+       
+    </section>
+   
+
+<section id="blog">
+    <div class="blog-box">
+        <div class="blog-img">
+            <img src="{%static 'img/blog/b1.jpg'%}">
+        </div>
+        <div class="blog-details">
+            <h4>The Cotton-Jersey Zip-Up hoddies</h4>
+            <p>Kickstarte man braid godard coloring book.Racletter waistcoat selfies
+                yr wolf chartreuse hexagonirony,godard_
+            </p>
+            <a href="#">CONTINUE READING</a>
+        </div>
+            <h1>13/01</h1>
+        
+    </div>
+
+    <div class="blog-box">
+        <div class="blog-img">
+            <img src="{%static 'img/blog/b2.jpg'%}">
+        </div>
+        <div class="blog-details">
+            <h4>How to Style a Quiff</h4>
+            <p>Kickstarte man braid godard coloring book.Racletter waistcoat selfies
+                yr wolf chartreuse hexagonirony,godard_
+            </p>
+            <a href="#">CONTINUE READING</a>
+        </div>
+            <h1>13/01</h1>
+       
+    </div>
+
+    <div class="blog-box">
+        <div class="blog-img">
+            <img src="{%static 'img/blog/b3.jpg'%}">
+        </div>
+        <div class="blog-details">
+            <h4>Must-Have Skater Girl</h4>
+            <p>Kickstarte man braid godard coloring book.Racletter waistcoat selfies
+                yr wolf chartreuse hexagonirony,godard_
+            </p>
+            <a href="#">CONTINUE READING</a>
+        </div>
+            <h1>13/01</h1>
+        
+    </div>
+
+    <div class="blog-box">
+        <div class="blog-img">
+            <img src="{%static 'img/blog/b4.jpg'%}" alt="">
+        </div>
+        <div class="blog-details">
+            <h4>Runway Inspired Trends</h4>
+            <p>Kickstarte man braid godard coloring book.Racletter waistcoat selfies
+                yr wolf chartreuse hexagonirony,godard_
+            </p>
+            <a href="#">CONTINUE READING</a>
+        </div>
+            <h1>13/01</h1>
+      
+    </div>
+
+    <div class="blog-box">
+        <div class="blog-img">
+            <img src="{%static 'img/blog/b6.jpg'%}">
+        </div>
+        <div class="blog-details">
+            <h4>The Cotton-Jersey Zip-Up hoddies</h4>
+            <p>Kickstarte man braid godard coloring book.Racletter waistcoat selfies
+                yr wolf chartreuse hexagonirony,godard_
+            </p>
+            <a href="#">CONTINUE READING</a>
+        </div>
+            <h1>13/01</h1>
+       
+    </div>
+</section>
+   
+
+
+
+
+<section id="pagination" class="section-p1">
+    <a href="#">1</a>
+    <a href="#">2</a>
+    <a href="#"><i class="fal fa-long-arrow-alt-right">-></i></a>
+    
+</section>
+
+{% endblock %}

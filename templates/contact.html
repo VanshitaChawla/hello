@@ -1,0 +1,115 @@
+{% extends 'base1.html' %}
+
+{% load static %}
+
+{% block body %}
+
+<section id="header">
+    <a href="#"><img src="/img/logo.png" class="logo" alt=""></a> 
+<div>
+    <ul id ="navbar">
+        <li><a  href="/ecom">Home</a></li>
+            <li><a  href="/shop">Shop</a></li>
+                <li><a  href="/blog">Blog</a></li>
+                    <li><a  href="/about">About</a></li>
+                        <li><a class="active" href="/contact">Contact-Us</a></li>
+                            <li id="lg-bag"><a href="/cart"><img src="{% static 'img/shopping-cart.png' %}"</a></li>
+                            <a href="#" id="close"><i class="far fa-times">*</i></a>
+
+                        </ul>
+</div>
+<div id="mobile">
+    <a href="/cart"><img src="{%static 'img/shopping-cart.png'%}"></a>
+    <i id="bar" class="fas fa-outdent"></i>
+  
+</div>
+
+</section>
+<section>
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-warning alert-dismissible fade show my-0" role="alert">
+   <div style="font-size:30px"> <strong>your fields has been added</strong> 
+    {{message}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  
+  {% endfor %}
+  {% endif %}
+</section>
+<section id="page-header" class="about-header">
+        
+        <h2>#Let's_Talk</h2>
+        
+        <p>Leave a message,We Love to Hear from you</p>
+       
+    </section>
+   
+
+<section id="contact-details" class="section-p1">
+    <div class="details">
+        <span>GET IN TOUCH></span>
+        <h2>visit one of our agency locations or contact us today</h2>
+        <h3>HEAD OFFICE</h3>
+    
+    <div>
+    <li>
+        <i class="fal fa-map"></i>
+        <p>56 Glassford Street Glassgow G1 1UL New York</p>
+    </li>
+    <li>
+        <i class="fal fa-envelope"></i>
+        <p>contact@example.com</p>
+    </li>
+    <li>
+        <i class="fal fa-phone-alt"></i>
+        <p>contact@example.com</p>
+    </li>
+    <li>
+        <i class="fal fa-clock"></i>
+        <p>Monday to Saturday:9:00 to 16.pm</p>
+    </li>
+    </div>
+    </div>
+    <div class="map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13591.182559227283!2d74.90097887529534!3d31.612059051427654!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39197cc508d8afa7%3A0xbda291e3a463394a!2sAlpha%20One%20Mall!5e0!3m2!1sen!2sin!4v1659019205817!5m2!1sen!2sin" 
+        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    
+    
+    </div>
+</section>
+
+<section id="form-details">
+<form method="post" action="/contact">
+    {% csrf_token %}
+    <span>leave A Message</span>
+    <h2>We love to hear</h2>
+    <input type="text"  name="name" placeholder="Your Name">
+    <input type="text" name="email" placeholder="E-Mail" >
+    <input type="text" placeholder="phoneno" name="phoneno">
+    <textarea name="desc" id="" cols="30" rows="10" placeholder="Your message">
+
+    </textarea>
+    <button class="normal">Submit</button>
+</form>
+<div class="people">
+    <div>
+    <img src="{%static 'img\people\1.png'%}" alt="">
+<p><span>John deoc</span> senior marketing manager<br>
+            phone:+000m1233 000 77 88<br> E-Mail:contact@example.com</p>
+    </div>
+    <div>
+        <img src="{%static 'img/people/2.png'%}" alt="">
+    <p><span>William Smith</span> Junior marketing manager<br>
+                phone:+000m1233 000 77 88<br> E-Mail:contact@example.com</p>
+        </div>
+        <div>
+            <img src="{%static 'img/people/3.png'%}" alt="">
+        <p><span>Emma Stone</span> senior outreach manager<br>
+                    phone:+000m1233 000 77 88<br> E-Mail:contact@example.com</p>
+            </div>
+        </div>
+</section>
+
+
+{% endblock body %}
