@@ -31,7 +31,7 @@ class Product(models.Model):
     image = models.ImageField(upload_to='products/images/',default="")
     brand = models.CharField(max_length=50,default="Zara")  
     rating=models.IntegerField(default=5)
-    gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
+    gender = models.CharField(max_length=1, choices=GENDER_CHOICES,default="Male")
     def __str__(self):
         return self.product_name
 

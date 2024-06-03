@@ -2,18 +2,29 @@ from multiprocessing import AuthenticationError
 from django.shortcuts import render,HttpResponse,redirect
 from home.models import Contact
 from home.models import Product
-from datetime import datetime
+from datetime import datetime, timedelta
+from django.utils import timezone
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import logout
 # Create your views here.
-
 def ecom(request):
     if request.user.is_anonymous:
         return redirect("/login")
-    products=Product.objects.all()
-    params={'product':products}
-    return render(request,'ecom.html')
+    
+    # Trending products with a rating greater than 3
+    trending_products = Product.objects.filter(rating__gt=3)
+    
+    # New products published within the last week
+    one_week_ago = timezone.now() - timedelta(days=7)
+    new_products = Product.objects.filter(pub_date__gte=one_week_ago)
+    
+    context = {
+        'trending_products': trending_products,
+        'new_products': new_products
+    }
+    
+    return render(request, 'ecom.html', context)
 def about(request):
     return render(request,'about.html')
 def blog(request):

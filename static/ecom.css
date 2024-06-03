@@ -274,23 +274,24 @@ body{
     color: #088178;
 }
 
-.cart{
+.cart {
     width: 40px;
     height: 40px;
-    line-height: 40px;
+    line-height: 10px;
     border-radius: 50px;
     background-color: #e8f6ea;
     font-weight: 500;
-    background-image: url("img/shopping-cart.png");
+    
     background-repeat:no-repeat;
-    align-items: center;
+   
     padding: 10px 5px 5px 5px;
     color: #088178;
     border: 1px solid #cce7d0;
     position:absolute;
     bottom: 20px;
     right: 10px;
-} 
+}
+
 #banner{
     display: flex;
     flex-direction:column ;

@@ -1,7 +1,7 @@
 
 {% extends 'base1.html' %}
 {% load static %}
-
+{% load custom_filters %}
 {% block body %}
 
 <section id="header">
@@ -74,20 +74,23 @@
         <h2>New-Arrival</h2>
         <p>Summer Collections New Modern Design</p>
         <div class="Pro-Container">
-            {% for product in products %}
+            {% for product in new_products %}
             <div class="pro">
-                <img src="{% static product.image %}" alt="">
+                <img src= '/media/{{product.image }}' alt="">
                 <div class="des">
-                    <span>{{ product.brand }}</span>
+                    <span>{{ product.desc }}</span>
                     <h5>{{ product.product_name }}</h5>
-                    <div class="star">
-                        {%for rating in product.rating%}
-                        <i class="fas fa-star"></i>
-                        {%endfor%}
-                    </div>
+                    {% comment %} <div class="star">
+                        
+                            {% for _ in range(product.rating) %}
+                                <i class="fas fa-star"></i>
+                            {% endfor %}
+                        
+                        
+                    </div> {% endcomment %}
                     <h4>${{ product.price }}</h4>
                 </div>
-                <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
+                <a href="#"><i class=" cart"></i></a>
             </div>
             {% endfor %}
         </div>
@@ -105,20 +108,26 @@
     <h2>Featured Products</h2>
     <p>Happy Things</p>
     <div class="Pro-Container">
-        {% for product in products %}
+        {% for product in trending_products %}
         <div class="pro">
-            <img src="{% static product.image %}" alt="">
+            <img src= '/media/{{product.image }}' alt="">
             <div class="des">
                 <span>{{ product.brand }}</span>
                 <h5>{{ product.product_name }}</h5>
-                <div class="star">
-                    {%for rating in product.rating%}
-                    <i class="fas fa-star"></i>
-                    {%endfor%}
-                </div>
+                
+                    {% comment %} <div class="star">
+    
+    
+    <!-- Inside your template -->
+    {% for _ in product.rating|stars_range %}
+        <i class="fas fa-star"></i>
+    {% endfor %}
+    
+                    </div>  {% endcomment %}
                 <h4>${{ product.price }}</h4>
             </div>
-            <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
+            <a href="#"><i class=" cart  black"></i></a>
+
         </div>
         {% endfor %}
     </div>
