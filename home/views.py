@@ -1,14 +1,18 @@
+from multiprocessing import AuthenticationError
 from django.shortcuts import render,HttpResponse,redirect
 from home.models import Contact
+from home.models import Product
 from datetime import datetime
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import logout
 # Create your views here.
 
-def index(request):
+def ecom(request):
     if request.user.is_anonymous:
         return redirect("/login")
+    products=Product.objects.all()
+    params={'product':products}
     return render(request,'ecom.html')
 def about(request):
     return render(request,'about.html')
@@ -37,7 +41,7 @@ def login(request):
     if request.method=='POST':
         username=request.POST.get('username')
         password=request.POST.get('password')
-        user = authenticate(username=username, password=password)
+        user = Authentication(username=username, password=password)
         if user is not none:
             return redirect("/")
         else:
