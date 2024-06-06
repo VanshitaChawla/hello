@@ -273,7 +273,7 @@ body{
     font-weight: 700;
     color: #088178;
 }
-
+/* 
 .cart {
     width: 40px;
     height: 40px;
@@ -290,7 +290,24 @@ body{
     position:absolute;
     bottom: 20px;
     right: 10px;
+} */
+.cart {
+    width: 40px;
+    height: 40px;
+    line-height: 10px;
+    border-radius: 50px;
+    background-color: #e8f6ea;
+    font-weight: 500;
+    background-repeat:no-repeat;
+    padding: 10px 5px 5px 5px;
+    color: #088178;
+    border: 1px solid #cce7d0;
+    position:absolute;
+    bottom: 20px;
+    right: 10px;
 }
+
+
 
 #banner{
     display: flex;

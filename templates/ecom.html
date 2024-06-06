@@ -4,26 +4,7 @@
 {% load custom_filters %}
 {% block body %}
 
-<section id="header">
-    <a href="#"><img src="/img/lo{% static 'go.png" class="logo'%}" alt=""></a> 
-<div>
-    <ul id ="navbar">
-        <li><a class="active" href="/ecom">Home</a></li>
-        <li><a href="/shop">Shop</a></li>
-                <li><a href="/blog">Blog</a></li>
-                    <li><a href="/about">About</a></li>
-                        <li><a href="/contact">Contact-Us</a></li>
-                            <li id="lg-bag"><a href="/cart."><img src="{% static 'img/shopping-cart.png' %}"></a></li>
-                            <a href="#" id="close"><i class="far fa-times">*</i></a>
 
-                        </ul>
-</div>
-<div id="mobile">
-     <a href="/cart"><img src="img/shopping-cart.png"></a>
-     <i id="bar" class="fas fa-outdent"></i>
-   
-</div>
-</section>
     <section id="hero">
         <h4>trade-in-offer</h4>
         <h2>Super Value Deals </h2>
@@ -78,19 +59,22 @@
             <div class="pro">
                 <img src= '/media/{{product.image }}' alt="">
                 <div class="des">
-                    <span>{{ product.desc }}</span>
+                    <span>{{ product.desc|slice:"0:50" }}.. </span>
                     <h5>{{ product.product_name }}</h5>
-                    {% comment %} <div class="star">
-                        
-                            {% for _ in range(product.rating) %}
-                                <i class="fas fa-star"></i>
-                            {% endfor %}
-                        
-                        
-                    </div> {% endcomment %}
+                    {% load custom_filters %}
+
+                    <div class="star">
+                        {% for i in featured_product.rating|times %}
+                            <i class="fas fa-star"></i>
+                        {% endfor %}
+                    </div>
                     <h4>${{ product.price }}</h4>
                 </div>
-                <a href="#"><i class=" cart"></i></a>
+                <div class="cart">
+                <a href="#" >
+                    <i  class="fas fa-shopping-cart "></i>
+                </a>
+            </div>
             </div>
             {% endfor %}
         </div>
@@ -110,24 +94,32 @@
     <div class="Pro-Container">
         {% for product in trending_products %}
         <div class="pro">
-            <img src= '/media/{{product.image }}' alt="">
+            <a href="/product/{{product.id}}">
+                <img src='/media/{{product.image}}' alt='Product Image'>
+            </a>
+            
             <div class="des">
                 <span>{{ product.brand }}</span>
                 <h5>{{ product.product_name }}</h5>
                 
-                    {% comment %} <div class="star">
-    
-    
-    <!-- Inside your template -->
-    {% for _ in product.rating|stars_range %}
-        <i class="fas fa-star"></i>
-    {% endfor %}
-    
-                    </div>  {% endcomment %}
+                {% load custom_filters %}
+
+                <div class="star">
+                    {% for i in featured_product.rating|times %}
+                        <i class="fas fa-star"></i>
+                    {% endfor %}
+                </div>
                 <h4>${{ product.price }}</h4>
             </div>
-            <a href="#"><i class=" cart  black"></i></a>
-
+            <div class="cart">
+                {% comment %} <form {%url 'add_to_cart' product.Id %} method="POST">
+                    {% csrf_token %} {% endcomment %}
+                    <button id="cart" type="submit" style="border:none">
+                        <i class="fas fa-shopping-cart"></i> 
+                    </button>
+                {% comment %} </form> {% endcomment %}
+            </div>
+            
         </div>
         {% endfor %}
     </div>

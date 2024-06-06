@@ -1,0 +1,137 @@
+{% extends 'base1.html' %}
+{% load static %}
+{% block body %}
+
+<style>
+ 
+    .section-box {
+        border: 2px solid green;
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 10px;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .section-box h3 {
+        font-weight: bold;
+        color: green;
+        margin-bottom: 20px;
+        width:40%;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+        color: green;
+    }
+
+    .form-control {
+        border: 2px solid green;
+        border-radius: 5px;
+        padding: 8px;
+        width: 30%;
+    }
+
+    .btn-primary {
+        background-color: green;
+        border-color: green;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-weight: bold;
+    }
+
+    .btn-primary:hover {
+        background-color: darkgreen;
+        border-color: darkgreen;
+    }
+</style>
+
+<section id="page-header" class="checkout-header bg-success text-white py-4">
+    <div class="container">
+        <h2>Checkout</h2>
+    </div>
+</section>
+
+<section id="checkout" class="section-p1">
+    <div class="container">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div class="row">
+                <!-- Billing Details Section -->
+                <div class="col-md-2">
+                    <div class="section-box">
+                        <h3>Billing Details</h3>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="text" id="email" name="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="address_line_1">Address Line 1</label>
+                            <input type="text" id="address_line_1" name="address_line_1" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="city">City</label>
+                            <input type="text" id="city" name="city" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="state">State</label>
+                            <input type="text" id="state" name="state" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="postal_code">Postal Code</label>
+                            <input type="text" id="postal_code" name="postal_code" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="country">Country</label>
+                            <input type="text" id="country" name="country" class="form-control" required>
+                        </div>
+                    
+              
+                <!-- Order Summary Section -->
+                
+                    <div class="section-box">
+                        <h3>Order Summary</h3>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Quantity</th>
+                                    <th>Subtotal</th>
+                                </tr>
+                            </thead>
+                            <tbody style="padding:12px;">
+                                {% for item in cart_items %}
+                                <tr style="padding:12px;">
+                                    <td >{{ item.product.product_name }}</td>
+                                    <td>{{ item.quantity }}</td>
+                                    {% comment %} <td>${{ item.product.price * item.quantity }}</td> {% endcomment %}
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="2"><strong>Total</strong></td>
+                                    <td><strong>${{ total }}</strong></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        <button type="submit" class="btn btn-primary btn-block">Place Order</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+
+{% endblock %}

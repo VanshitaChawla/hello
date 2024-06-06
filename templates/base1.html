@@ -6,14 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> {% block title %}{% endblock title %}
         basefile</title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+  
     {% load static %}
     <link rel="stylesheet"  href="{% static 'ecom.css' %}">
     </head>
 <body>
-   
-
-
+    <section id="header">
+        <a href="#" class="logo" ></a> 
+<div>
+    <ul id="navbar">
+        <li><a href="/" class="{% if active_page == 'ecom' %}active{% endif %}">Home</a></li>
+        <li><a href="/shop" class="{% if active_page == 'shop' %}active{% endif %}">Shop</a></li>
+        <li><a href="/blog" class="{% if active_page == 'blog' %}active{% endif %}">Blog</a></li>
+        <li><a href="/about" class="{% if active_page == 'about' %}active{% endif %}">About</a></li>
+        <li><a href="/contact" class="{% if active_page == 'contact' %}active{% endif %}">Contact-Us</a></li>
+        <li id="lg-bag"><a id="cart-count" href="/cart"><img src="{% static 'img/shopping-cart.png' %}"></a></li>
+        <a href="#" id="close"><i class="far fa-times">*</i></a>
+    </ul>
+</div>
+<div id="mobile">
+    <a href="/cart"><img src="{%static 'img/shopping-cart.png'%}"></a>
+    <i id="bar" class="fas fa-outdent"></i>
+  
+</div>
+</section>
    {% block body %}{% endblock body %}
    <section id="newsletter" class="section-p1 section-m1">
     <div class="newstext">
@@ -28,7 +45,7 @@
 
    <footer class="section-p1">
     <div class="col">
-        <img class="logo" src="img/logo.png" alt="">
+        {% comment %} <img class="logo" src="img/logo.png" alt=""> {% endcomment %}
         <h4>Contact-Us</h4>
         <p><strong>housing block california</strong></p>
         <p><strong>Phone:</strong>+9877878787/ 98578678876</p>
@@ -66,11 +83,11 @@
         <h4>Install App</h4>
         <p>From App Store or Google Play</p>
         <div class="row">
-            <img src="img/pay/app.jpg" alt="">
-            <img src="img/pay/play.jpg" alt="">
+            {% comment %} <img src="img/pay/app.jpg" alt="">
+            <img src="img/pay/play.jpg" alt=""> {% endcomment %}
         </div>
         <p>Secuered Payment Gateways</p>
-        <img src="img/pay/pay.png">
+        
         <div class="copyright">
             <p>@2021  copyright framework</p>
         </div>
@@ -78,7 +95,6 @@
 
     
 </footer>
-
-<script src="ecom.js"></script>
+{%block js%}{%endblock%}
 </body>
 </html>

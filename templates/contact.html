@@ -4,27 +4,7 @@
 
 {% block body %}
 
-<section id="header">
-    <a href="#"><img src="/img/logo.png" class="logo" alt=""></a> 
-<div>
-    <ul id ="navbar">
-        <li><a  href="/">Home</a></li>
-            <li><a  href="/shop">Shop</a></li>
-                <li><a  href="/blog">Blog</a></li>
-                    <li><a  href="/about">About</a></li>
-                        <li><a class="active" href="/contact">Contact-Us</a></li>
-                            <li id="lg-bag"><a href="/cart"><img src="{% static 'img/shopping-cart.png' %}"</a></li>
-                            <a href="#" id="close"><i class="far fa-times">*</i></a>
 
-                        </ul>
-</div>
-<div id="mobile">
-    <a href="/cart"><img src="{%static 'img/shopping-cart.png'%}"></a>
-    <i id="bar" class="fas fa-outdent"></i>
-  
-</div>
-
-</section>
 <section>
 {% if messages %}
 {% for message in messages %}

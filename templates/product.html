@@ -5,172 +5,154 @@
 
 <section id="productails" class="section-p1">
     <div class="single-pro-image">
-        <img src="img/products/f1.jpg" width="100%" id="mainImg" alt="">
-    
-    <div class="small-img-group">
-        <div class="small-img-col">
-        <img src="img/products/f1.jpg" width="100%" class="small-img" alt="">;
-    </div>
-    
-    <div class="small-img-col">
-        <img src="img/products/f2.jpg" width="100%" class="small-img" alt="">;
-    </div>
-    <div class="small-img-col">
-        <img src="img/products/f3.jpg" width="100%" class="small-img" alt="">;
-    </div>
-    <div class="small-img-col">
-        <img src="img/products/f4.jpg" width="100%" class="small-img" alt="">;
-    </div>
-    </div>
+        <img src="/media/{{ product.image }}" alt="Product Image" width="100%" id="mainImg">
+        <div class="small-img-group">
+            {% for image in product.images %}
+            <div class="small-img-col">
+                <img src="/media/{{ image }}" alt="Product Image" width="100%" class="small-img">
+            </div>
+            {% endfor %}
+        </div>
     </div>
     <div class="single-pro-details">
-        <h6>Home/t-Shirt</h6>
-        <h4>Men's Fashion T shirt</h4>
-        <h2>$139.00</h2>
-        <select>
-            <option>Select Size</option>
-            <option>XL</option>
-            <option>XXL</option>
-            <option>small</option>
-            <option>Large</option>
-        </select>
-        <input type="number" value="1">
-        <button class="normal">Add to Cart</button>
-        <h4>Product Details</h4>
-        <span>The gildan ultra cotton tshirt is made from substantial 6.0oz per sq yd fabric 
-            constructed from 100%cotton, this classic fit preshrucnk
-            jersey knit provides unmatched comfrot with each wear.
-            featuring a taped neck and shoulder
-        </span>
+        <h6>{{ product.brand }}</h6>
+        <h4>{{ product.category }}</h4>
+        <h2>${{ product.price }}</h2>
+        <form id="addToCartForm" action="{% url 'add_to_cart' product.id %}" method="POST">
+            {% csrf_token %}
+            <select id="sizeSelect" name="size">
+                <option value="">Select Size</option>
+                <option value="XL">XL</option>
+                <option value="XXL">XXL</option>
+                <option value="Small">Small</option>
+                <option value="Large">Large</option>
+            </select>
+            <span id="quantityControl">
+                <button type="button" id="minusQuantity" class="btn btn-primary minus normal"> - </button>
+                <span id="quantityValue">1</span>
+                <input type="hidden" id="quantityInput" name="quantity" value="1">
+                <button type="button" id="plusQuantity" class="btn btn-primary plus normal"> + </button>
+            </span>
+            <button type="submit" class="normal Cart">Add to Cart</button>
+        </form>
+        <h4>{{ product.product_name }}</h4>
+        <span>{{ product.desc }}</span>
+        {% load custom_filters %}
+        <div class="star">
+            {% for i in product.rating|times %}
+                <i class="fas fa-star"></i>
+            {% endfor %}
+        </div>
     </div>
 </section>
 
-
-<section id="product1" class="section-p1"> 
-
+<section id="product1" class="section-p1">
     <h2>Featured products</h2>
-    <p>Summer Collections New Modern Design </p>
+    <p>Summer Collections New Modern Design</p>
     <div class="Pro-Container">
-        <div class="pro" >
-            <img src="img/products/n1.jpg" alt="">
-            <div class="des">
-                <span>adidas</span>
-                <h5>Cartoon Astronaut T-Shirts</h5>
-                <div class="star">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-            </div>
-            <h4>$78</h4>
-        </div>
-        <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
-    </div>
-    
+        {% for featured_product in featured_products %}
         <div class="pro">
-            <img src="img/products/n2.jpg" alt="">
+            <img src="/media/{{ featured_product.image }}" alt="Product Image" width="100%">
             <div class="des">
-                <span>adidas</span>
-                <h5>Cartoon Astronaut T-Shirts</h5>
+                <span>{{ featured_product.brand }}</span>
+                <h5>{{ featured_product.name }}</h5>
                 <div class="star">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
+                    {% for i in featured_product.rating|times %}
+                        <i class="fas fa-star"></i>
+                    {% endfor %}
+                </div>
+                <h4>${{ featured_product.price }}</h4>
+                <span id="divpr{{featured_product.id}}">
+                    <button id="pr{{featured_product.id}}" class="cart Cart"><i class="fal fa-shopping-cart"></i></button>
+                </span>
             </div>
-            <h4>$78</h4>
         </div>
-        <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
+        {% endfor %}
     </div>
-    
-        <div class="pro">
-            <img src="img/products/n3.jpg" alt="">
-            <div class="des">
-                <span>adidas</span>
-                <h5>Cartoon Astronaut T-Shirts</h5>
-                <div class="star">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-            </div>
-            <h4>$78</h4>
-        </div>
-        <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
-    </div>
-    
-        <div class="pro">
-            <img src="img/products/n4.jpg" alt="">
-            <div class="des">
-                <span>adidas</span>
-                <h5>Cartoon Astronaut T-Shirts</h5>
-                <div class="star">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-            </div>
-            <h4>$78</h4>
-        </div>
-        <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
-    </div>
-    
-        <div class="pro">
-            <img src="img/products/n5.jpg" alt="">
-            <div class="des">
-                <span>adidas</span>
-                <h5>Cartoon Astronaut T-Shirts</h5>
-                <div class="star">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-            </div>
-            <h4>$78</h4>
-        </div>
-        <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
-    </div>
-    
-        <div class="pro">
-            <img src="img/products/n6.jpg" alt="">
-            <div class="des">
-                <span>adidas</span>
-                <h5>Cartoon Astronaut T-Shirts</h5>
-                <div class="star">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-            </div>
-            <h4>$78</h4>
-        </div>
-        <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
-    </div>
-
-        <div class="pro">
-            <img src="img/products/n7.jpg" alt="">
-            <div class="des">
-                <span>adidas</span>
-                <h5>Cartoon Astronaut T-Shirts</h5>
-                <div class="star">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-            </div>
-            <h4>$78</h4>
-        </div>
-        <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
-    </div>
-    
-        </div>
 </section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('minusQuantity').addEventListener('click', function() {
+            var quantity = parseInt(document.getElementById('quantityValue').innerText);
+            if (quantity > 1) {
+                quantity -= 1;
+                document.getElementById('quantityValue').innerText = quantity;
+                document.getElementById('quantityInput').value = quantity;
+            }
+        });
+
+        document.getElementById('plusQuantity').addEventListener('click', function() {
+            var quantity = parseInt(document.getElementById('quantityValue').innerText);
+            quantity += 1;
+            document.getElementById('quantityValue').innerText = quantity;
+            document.getElementById('quantityInput').value = quantity;
+        });
+    });
+</script>
 
 {% endblock %}
+
+
+
+
+{% comment %} let Cart = {};
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize the cart object if it doesn't already exist
+    if (!Cart) {
+        Cart = {};
+    }
+
+    // Check if there's an existing cart in local storage
+    if (localStorage.getItem('Cart')) {
+        Cart = JSON.parse(localStorage.getItem('Cart'));
+        updateCartCount(); // Update cart count immediately if there's an existing cart
+    }
+
+    // Add event listeners to the 'Add to Cart' buttons
+    document.querySelectorAll('.Cart').forEach(function(button) {
+        button.addEventListener('click', function() {
+            var idstr = this.id; // Use the button's ID directly
+            var quantity = parseInt(document.getElementById('quantityValue').innerText);
+           
+
+                Cart[idstr]=quantity;
+           
+            localStorage.setItem('Cart', JSON.stringify(Cart));
+            updateCartCount(); // Update cart count after modifying the cart
+        });
+    });
+
+    // Add event listeners to the quantity control buttons
+    document.getElementById('minusQuantity').addEventListener('click', function() {
+        var quantity = parseInt(document.getElementById('quantityValue').innerText);
+        if (quantity > 1) {
+            document.getElementById('quantityValue').innerText = quantity - 1;
+        } else {
+            // If quantity is 1, remove the item from the cart
+            var idstr = document.getElementById('pr{{ product.id }}').id; // Corrected to use.id property
+            if (Cart[idstr]) {
+                delete Cart[idstr];
+                localStorage.setItem('Cart', JSON.stringify(Cart));
+                updateCartCount(); // Update cart count after modifying the cart
+            }
+        }
+    });
+
+    document.getElementById('plusQuantity').addEventListener('click', function() {
+        var quantity = parseInt(document.getElementById('quantityValue').innerText);
+        document.getElementById('quantityValue').innerText = quantity + 1;
+    });
+});
+
+function updateCartCount() {
+    const cartCountElement = document.getElementById('cart-count');
+    if (cartCountElement) {
+        cartCountElement.innerText = Object.keys(Cart).length;
+    }
+    console.log(Cart);
+
+
+} {% endcomment %}
+

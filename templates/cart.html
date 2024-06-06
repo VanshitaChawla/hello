@@ -2,35 +2,10 @@
 
 {% load static %}
 {% block body %}
-    <section id="header">
-        <a href="#"><img src="/img/logo.png" class="logo" alt=""></a> 
-    <div>
-        <ul id ="navbar">
-            <li><a  href="/">Home</a></li>
-                <li><a  href="/shop">Shop</a></li>
-                    <li><a  href="/blog">Blog</a></li>
-                        <li><a  href="/about">About</a></li>
-                            <li><a  href="/contact">Contact-Us</a></li>
-                                <li id="lg-bag"><a class="active" href="/cart"><img src="{% static 'img/shopping-cart.png' %}"</a></li>
-                                <a href="#" id="close"><i class="far fa-times">*</i></a>
-
-                            </ul>
-    </div>
-    <div id="mobile">
-         <a href="/cart"><img src="img/shopping-cart.png"></a>
-         <i id="bar" class="fas fa-outdent"></i>
-       
-    </div>
-    </section>
-
-
 
 <section id="page-header" class="about-header">
-        
-        <h2>#Let's_Talk</h2>
-        
-        <p>read all case studies about our products!</p>
-       
+    <h2>#Let's_Talk</h2>
+    <p>Read all case studies about our products!</p>
 </section>
 
 <section id="cart" class="section-p1">
@@ -39,45 +14,39 @@
             <tr>
                 <td>Remove</td>
                 <td>Images</td>
-                <td>products</td>
+                <td>Size</td>
                 <td>Price</td>
                 <td>Quantity</td>
                 <td>Subtotal</td>
             </tr>
         </thead>
         <tbody>
+            {% for item in cart_items %}
             <tr>
-               <td><i class="far fa-times-circle"></i></td> 
-                <td><img src="img/products/f1.jpg" alt=""></td>
-                <td>cartoon Astronaut t-Shirts</td>
-                <td>$118.19</td>
-                <td><input type="number" value="1"></td>
-                <td>$118.19</td>
+                 <td>
+                    <form action="{% url 'remove_from_cart' item.id %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger btn-lg mx-auto d-block">
+                            <i class="far fa-times-circle"></i>
+                        </button>
+                        
+                    </form>
+                </td> 
+                <td><img src="/media/{{ item.product.image }}" alt="{{ item.product.product_name }}"></td>
+                <td>{{ item.product.product_name }}</td>
+                <td>${{ item.size }}</td>
+                <td>${{ item.product.price }}</td>
+                <td><input type="number" value="{{ item.quantity }}" readonly></td>
+              {%load custom_filters%}
+                <td>{{ item.product.price}}*{{item.quantity }}</td>
             </tr>
-            <tr>
-                <td><i class="far fa-times-circle"></i></td> 
-                 <td><img src="img/products/f3.jpg" alt=""></td>
-                 <td>cartoon Astronaut t-Shirts</td>
-                 <td>$118.19</td>
-                 <td><input type="number" value="1"></td>
-                 <td>$118.19</td>
-             </tr>
-             <tr>
-                <td><i class="far fa-times-circle"></i></td> 
-                 <td><img src="img/products/f6.jpg" alt=""></td>
-                 <td>cartoon Astronaut t-Shirts</td>
-                 <td>$118.19</td>
-                 <td><input type="number" value="1"></td>
-                 <td>$118.19</td>
-             </tr>
-
+            {% endfor %}
         </tbody>
-
     </table>
 </section>
 
 <section id="cart-add" class="section-p1">
-        <div id="coupon">
+    <div id="coupon">
         <h3>Apply Coupon</h3>
         <div>
             <input type="text" placeholder="Enter Your Coupon">
@@ -85,22 +54,24 @@
         </div>
     </div>
     <div id="subtotal">
-        <h3>Cart total</h3>
+        <h3>Cart Total</h3>
         <table>
             <tr>
-                <td>cart subtotal</td>
-        <td>$335</td>
+                <td>Cart Subtotal</td>
+                <td>${{ total }}</td>
             </tr>
             <tr>
                 <td>Shipping</td>
-        <td>Free</td>
+                <td>Free</td>
             </tr>
             <tr>
-            <td><strong>Total</strong></td>
-            <td><strong>$335</strong></td>
+                <td><strong>Total</strong></td>
+                <td><strong>${{ total }}</strong></td>
             </tr>
         </table>
-        <button class="normal">checkout</button>
+        <a href="{% url 'Check_out_cart' total %}" class="btn btn-primary normal">Checkout</a>
+
     </div>
 </section>
+
 {% endblock %}
