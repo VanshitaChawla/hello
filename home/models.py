@@ -60,3 +60,12 @@ class Order(models.Model):
 
     def __str__(self):
         return f'{self.user.username} - {self.address_line_1}, {self.city}'
+    
+class OrderUpdate(models.Model):
+    Update_Id=models.IntegerField(primary_key=True)
+    order_Id=models.ForeignKey(Order,on_delete=models.CASCADE)
+    Update_desc = models.CharField(max_length=100)
+    TimeStamp = models.DateField(   auto_now_add=True)
+
+    def __str__(self) -> str:
+        return self().Update_desc[0:7]+"..."
